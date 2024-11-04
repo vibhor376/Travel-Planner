@@ -1,0 +1,215 @@
+:root {
+   --main-icon-color: #6549ec;
+}
+
+body {
+   background-color: #CDC4F9;
+   min-height: 100vh;
+}
+
+.icon {
+   font-size: 1.6rem;
+   color: black;
+   --bs-nav-link-hover-color: var(--main-icon-color);
+   transition: all 0.3s ease-in-out;
+   user-select: none;
+}
+
+.icon:hover {
+   transform: scale(1.2);
+   color: var(--main-icon-color);
+}
+
+.icon:active {
+   transform: scale(1.2);
+   color: #5538e4;
+}
+
+.sendicon {
+   height: 2rem;
+   margin: 0.4rem 0.6rem;
+   transition: all 0.1s ease-in-out;
+}
+
+.sendicon:hover {
+   transform: scale(1.15);
+}
+
+.logo {
+   height: 2.4rem;
+   transition: all 0.1s ease-in-out;
+}
+
+.logo:hover {
+   transform: scale(1.15);
+}
+
+.sendMessage {
+   background-color: #785fee;
+}
+
+.chats-container {
+   height: 100%;
+}
+
+.btn-light {
+   --bs-btn-active-bg: #785fee;
+   --bs-btn-active-border-color: #785fee;
+   --bs-btn-active-color: #f8f9fa;
+}
+
+.btn-primary {
+   --bs-btn-bg: #785fee;
+   --bs-btn-border-color: #785fee;
+   --bs-btn-hover-bg: #6549ec;
+   --bs-btn-hover-border-color: #6549ec;
+   --bs-btn-active-bg: #5538e4;
+   --bs-btn-active-border-color: #5538e4;
+}
+
+.options-label {
+   font-size: 1.05rem;
+   font-weight: 500;
+   margin-top: 2.5rem;
+   user-select: none;
+   white-space: nowrap;
+   cursor: pointer;
+}
+
+.options-toggle {
+   padding-left: 0.1rem;
+   display: inline-block;
+   height: auto;
+   width: fit-content;
+}
+
+.list-group-item.active {
+   background-color: #785fee;
+   border-color: #785fee;
+}
+
+
+::-webkit-scrollbar {
+   width: 5px;
+}
+
+::-webkit-scrollbar-track {
+   width: 5px;
+   background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+   width: 1em;
+   background-color: #ddd;
+   outline: 1px solid slategrey;
+   border-radius: 1rem;
+}
+
+.text-small {
+   font-size: 0.9rem;
+}
+
+.messages-box,
+.chat-box {
+   height: 38rem;
+   overflow-y: scroll;
+}
+
+.rounded-lg {
+   border-radius: 0.5rem;
+}
+
+input::placeholder {
+   font-size: 0.9rem;
+   color: #999;
+}
+
+.date {
+   user-select: none;
+}
+
+.addbtn-container {
+   display: flex;
+   justify-content: space-between;
+}
+
+.plus {
+   font-size: 1.7rem;
+}
+
+#addbtn {
+   padding: 0.3rem 0.6rem 0rem 0.5rem;
+   text-align: right;
+}
+
+#submitButton {
+   border-color: white;
+}
+
+
+#restaurants-suggestions:hover,
+#hotels-suggestions:hover {
+   --bs-btn-hover-bg: white;
+   --bs-btn-hover-color: #5538e4;
+   --bs-btn-hover-border-color: #5538e4;
+}
+
+
+#close-suggestions {
+   text-align: end;
+   color: #54626F;
+   user-select: none;
+   cursor: pointer;
+}
+
+
+.g-recaptcha{
+   margin: 1.2rem 0.6rem;
+}
+
+
+/************************************   INPUT GROUP   ************************************/
+
+
+input[type=checkbox] {
+   height: 0;
+   width: 0;
+   visibility: hidden;
+   display: inline;
+}
+
+label.toggle {
+   cursor: pointer;
+   text-indent: -9999px;
+   width: 3rem;
+   height: 1.5rem;
+   background: grey;
+   display: inline-block;
+   border-radius: 3rem;
+   position: relative;
+}
+
+label.toggle:after {
+   content: '';
+   position: absolute;
+   top: 10%;
+   left: 5%;
+   width: 1.2rem;
+   height: 1.2rem;
+   background: #fff;
+   border-radius: 5.65rem;
+   transition: 0.3s;
+}
+
+input:checked + label.toggle {
+   background: #785fee;
+}
+
+input:checked + label.toggle:after {
+   left: calc(100% - 5%);
+   transform: translateX(-100%);
+}
+
+label.toggle:active:after {
+   width: 60%;
+}

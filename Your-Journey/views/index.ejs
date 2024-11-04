@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Journey</title>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- navbar -->
+
+        <div class="col-sm-auto bg-light sticky-top">
+          <div
+            class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top"
+          >
+            <a
+              class="d-block py-3 link-dark text-decoration-none"
+              title=""
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-original-title="Icon-only"
+            >
+              <img class="logo" src="images/travel.png" alt="" />
+            </a>
+            <ul
+              class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center"
+            >
+              <li>
+                <a
+                  href="/"
+                  class="icon nav-link py-3 px-2"
+                  title=""
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  data-bs-original-title="Home"
+                >
+                  <i class="fi fi-rr-home lg"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  id="mailIcon"
+                  class="icon nav-link py-3 px-2"
+                  title=""
+                  data-bs-toggle="modal"
+                  data-bs-target="#mailModal"
+                  data-bs-placement="right"
+                  data-bs-original-title="Mail"
+                >
+                  <i class="fi fi-rr-envelope-download"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="icon nav-link py-3 px-2"
+                  title=""
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  data-bs-original-title="Orders"
+                >
+                  <i class="fi fi-rr-hand-holding-heart"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/about"
+                  class="icon nav-link py-3 px-2"
+                  title=""
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  data-bs-original-title="Products"
+                >
+                  <i class="fi fi-rr-info"></i>
+                </a>
+              </li>
+            </ul>
+
+            <div class="dropdown">
+              <a
+                class="d-flex align-items-center justify-content-center py-3 px-1 link-dark text-decoration-none dropdown-toggle"
+                id="dropdownUser3"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="icon fi fi-rr-circle-user"></i>
+              </a>
+              <ul
+                class="dropdown-menu text-small shadow"
+                aria-labelledby="dropdownUser3"
+              >
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mail Modal -->
+
+        <div
+          class="modal fade"
+          id="mailModal"
+          tabindex="-1"
+          aria-labelledby="mailModal"
+          aria-hidden="true"
+        >
+          <div
+            class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+          >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="mailInput">
+                  Get Chats by Email?
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div
+                id="mailModalBody"
+                class="modal-body p-4"
+                style="background-color: #cdc4f9"
+              >
+                ...
+              </div>
+              <div class="modal-footer">
+                <button
+                  id="sendMail"
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm p-3 d-flex min-vh-100">
+          <!-- content -->
+
+          <div class="container pt-2 px-4">
+            <div class="row rounded-lg overflow-hidden bg-white shadow">
+              <!-- Users box -->
+
+              <div class="col-3 px-0">
+                <div class="chats-container bg-white">
+                  <div class="addbtn-container bg-gray ps-4 py-2 pe-2 bg-light">
+                    <p class="h5 mb-0 py-2">Recent</p>
+                    <button
+                      id="addbtn"
+                      class="btn btn-light"
+                      data-bs-toggle="popover"
+                    >
+                      <i class="plus fi fi-rr-square-plus"></i>
+                    </button>
+                  </div>
+
+                  <div class="messages-box">
+                    <div id="chat-history" class="list-group rounded-0">
+                      <button
+                        id="chat1"
+                        class="chats list-group-item list-group-item-action active text-white rounded-0"
+                      >
+                        <div class="media">
+                          <div class="media-body ms-2">
+                            <div
+                              class="d-flex align-items-center justify-content-between mb-1"
+                            >
+                              <h6 class="mb-0">Chat 1</h6>
+                              <small class="date small font-weight-bold">
+                                <% if(chat1["welcome"].length){ %> <% if(date
+                                !== chat1["welcome"][1]){ %> <%=
+                                chat1["welcome"][1] %> <% } else { %> <%=
+                                chat1["welcome"][0] %> <% } %> <% } else { %>
+                                Just Now <% } %>
+                              </small>
+                            </div>
+                            <p class="font-italic mb-0 text-small">
+                              <% if(chat1["chats"].length){ %> <%=
+                              chat1["chats"][0][0] %> <% } else { %> New Chat <%
+                              } %>
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+
+                      <% if(chat2["chats"].length){ %>
+
+                      <button
+                        id="chat2"
+                        class="chats list-group-item list-group-item-action list-group-item-light rounded-0"
+                      >
+                        <div class="media">
+                          <div class="media-body ms-2">
+                            <div
+                              class="d-flex align-items-center justify-content-between mb-1"
+                            >
+                              <h6 class="mb-0">Chat 2</h6>
+                              <small class="date small font-weight-bold">
+                                <% if(date !== chat2["welcome"][1]){ %> <%=
+                                chat2["welcome"][1] %> <% } else { %> <%=
+                                chat2["welcome"][0] %> <% } %>
+                              </small>
+                            </div>
+                            <p class="font-italic mb-0 text-small">
+                              <%= chat2["chats"][0][0] %>
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+
+                      <% } %> <% if(chat3["chats"].length){ %>
+
+                      <button
+                        id="chat3"
+                        class="chats list-group-item list-group-item-action list-group-item-light rounded-0"
+                      >
+                        <div class="media">
+                          <div class="media-body ms-2">
+                            <div
+                              class="d-flex align-items-center justify-content-between mb-1"
+                            >
+                              <h6 class="mb-0">Chat 3</h6>
+                              <small class="date small font-weight-bold">
+                                <% if(date !== chat3["welcome"][1]){ %> <%=
+                                chat3["welcome"][1] %> <% } else { %> <%=
+                                chat3["welcome"][0] %> <% } %>
+                              </small>
+                            </div>
+                            <p class="font-italic mb-0 text-small">
+                              <%= chat3["chats"][0][0] %>
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+
+                      <% } %> <% if(chat4["chats"].length){ %>
+
+                      <button
+                        id="chat4"
+                        class="chats list-group-item list-group-item-action list-group-item-light rounded-0"
+                      >
+                        <div class="media">
+                          <div class="media-body ms-2">
+                            <div
+                              class="d-flex align-items-center justify-content-between mb-1"
+                            >
+                              <h6 class="mb-0">Chat 4</h6>
+                              <small class="date small font-weight-bold">
+                                <% if(date !== chat4["welcome"][1]){ %> <%=
+                                chat4["welcome"][1] %> <% } else { %> <%=
+                                chat4["welcome"][0] %> <% } %>
+                              </small>
+                            </div>
+                            <p class="font-italic mb-0 text-small">
+                              <%= chat4["chats"][0][0] %>
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+
+                      <% } %> <% if(chat5["chats"].length){ %>
+
+                      <button
+                        id="chat5"
+                        class="chats list-group-item list-group-item-action list-group-item-light rounded-0"
+                      >
+                        <div class="media">
+                          <div class="media-body ms-2">
+                            <div
+                              class="d-flex align-items-center justify-content-between mb-1"
+                            >
+                              <h6 class="mb-0">Chat 5</h6>
+                              <small class="date small font-weight-bold">
+                                <% if(date !== chat5["welcome"][1]){ %> <%=
+                                chat5["welcome"][1] %> <% } else { %> <%=
+                                chat5["welcome"][0] %> <% } %>
+                              </small>
+                            </div>
+                            <p class="font-italic mb-0 text-small">
+                              <%= chat5["chats"][0][0] %>
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chat Box -->
+
+              <div class="col-9 px-0">
+                <div class="px-3 py-4 chat-box bg-white" id="chatbox">
+                  <!-- Bot's Message-->
+                  <div class="media w-75 mb-3">
+                    <img
+                      src="images/chatbot.png"
+                      alt="user"
+                      width="50"
+                      class="rounded-circle"
+                    />
+                    <div class="media-body ms-3">
+                      <div class="bg-light rounded py-2 px-3 mb-2">
+                        <p class="mb-0">
+                          Hey There, I'm your AI Travel Planner, you can ask me
+                          any travel related query. Also on your right you can
+                          see various options for which helps me to better
+                          formulate my output (Minimize in case of not needed).
+                          Go Ahead, Ask me something!
+                        </p>
+                      </div>
+                      <% if(chat1["welcome"].length){ %>
+                      <p class="date small text-muted">
+                        <%= chat1["welcome"][0] %> | <%= chat1["welcome"][1] %>
+                      </p>
+                      <% } else { %>
+                      <p class="date small text-muted">
+                        <%= time %> | <%= date %>
+                      </p>
+                      <% } %>
+                    </div>
+                  </div>
+
+                  <% chat1["chats"].forEach((chat) => { %>
+
+                  <!--User's Message-->
+                  <div class="media w-50 ms-auto mb-3">
+                    <div class="media-body">
+                      <div class="sendMessage rounded py-2 px-3 mb-2">
+                        <p class="mb-0 text-white"><%= chat[0] %></p>
+                      </div>
+                      <p class="date small text-muted">
+                        <%= chat[2] %> | <%= chat[3] %>
+                      </p>
+                    </div>
+                  </div>
+
+                  <!--Bot's Message-->
+                  <div class="media w-75 mb-3">
+                    <img
+                      src="images/chatbot.png"
+                      alt="user"
+                      width="50"
+                      class="rounded-circle"
+                    />
+                    <div class="media-body ms-3">
+                      <div class="bg-light rounded py-2 px-3 mb-2">
+                        <p class="mb-0"><%- chat[1] %></p>
+                      </div>
+                      <p class="date small text-muted">
+                        <%= chat[2] %> | <%= chat[3] %>
+                      </p>
+                    </div>
+                  </div>
+
+                  <% }); %>
+                </div>
+
+                <!-- Typing area -->
+
+                <div
+                  class="text-muted d-flex justify-content-start align-items-center p-2 pt-0 mt-2"
+                >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="userInput"
+                    placeholder="Type message (Plan a trip from New York to San Francisco for 3 days)"
+                  />
+                  <button id="submitButton" class="btn m-0 p-0">
+                    <img class="sendicon" src="images/send.png" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <i class="fi fi-rr-plane"></i> -->
+
+          <!-- INPUT GROUPS -->
+
+          <div class="py-2">
+            <!-- Transportation -->
+
+            <div class="form-label options-label" id="travelModeToggle">
+              <div class="options-toggle" style="transform: rotate(90deg)">
+                <i class="fi fi-rr-caret-right mt-2"></i>
+              </div>
+              <span class="me-2">Transportation</span>
+            </div>
+
+            <div class="btn-group" style="display: flex" id="travelMode">
+              <input
+                type="radio"
+                class="btn-check"
+                name="transportation"
+                id="travelMode1"
+                value="Car"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="travelMode1">Car</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="transportation"
+                id="travelMode2"
+                value="Bus"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="travelMode2">Bus</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="transportation"
+                id="travelMode3"
+                value="Train"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="travelMode3">Train</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="transportation"
+                id="travelMode4"
+                value="Aeroplane"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="travelMode4">Aeroplane</label>
+            </div>
+
+            <!-- Type of Trip  -->
+
+            <div class="form-label options-label" id="tripTypeToggle">
+              <div class="options-toggle" style="transform: rotate(90deg)">
+                <i class="fi fi-rr-caret-right mt-2"></i>
+              </div>
+              <span class="me-2">Trip Type</span>
+            </div>
+
+            <div class="btn-group" style="display: flex" id="tripType">
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfTrip"
+                id="tripType1"
+                value="Budget"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="tripType1">Budget</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfTrip"
+                id="tripType2"
+                value="Backpacking"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="tripType2">Backpacking</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfTrip"
+                id="tripType3"
+                value="Luxury Travel"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="tripType3">Luxury</label>
+            </div>
+
+            <!-- Companion Type -->
+
+            <div class="form-label options-label" id="companionTypeToggle">
+              <div class="options-toggle" style="transform: rotate(90deg)">
+                <i class="fi fi-rr-caret-right mt-2"></i>
+              </div>
+              <span class="me-2">Companion Type</span>
+            </div>
+
+            <div class="btn-group" style="display: flex" id="companionType">
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfCompanion"
+                id="companionType1"
+                value="Solo"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="companionType1">Solo</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfCompanion"
+                id="companionType2"
+                value="Family"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="companionType2">Family</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfCompanion"
+                id="companionType3"
+                value="Friends"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="companionType3">Friends</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfCompanion"
+                id="companionType4"
+                value="Business"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="companionType4">Business</label>
+            </div>
+
+            <!-- Type of Stay -->
+
+            <div class="form-label options-label" id="stayTypeToggle">
+              <div class="options-toggle" style="transform: rotate(90deg)">
+                <i class="fi fi-rr-caret-right mt-2"></i>
+              </div>
+              <span class="me-2">Type of Stay</span>
+            </div>
+
+            <div class="btn-group" style="display: flex" id="stayType">
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfStay"
+                id="stayType1"
+                value="Hotel"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="stayType1">Hotel</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfStay"
+                id="stayType2"
+                value="Dormitory"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="stayType2">Dormitory</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfStay"
+                id="stayType3"
+                value="Home"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="stayType3">Home</label>
+            </div>
+
+            <!-- Type of Restaurant -->
+
+            <div class="form-label options-label" id="restaurantTypeToggle">
+              <div class="options-toggle" style="transform: rotate(90deg)">
+                <i class="fi fi-rr-caret-right mt-2"></i>
+              </div>
+              <span class="me-2">Type of Restaurant</span>
+            </div>
+
+            <div class="btn-group" style="display: flex" id="restaurantType">
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfRestaurant"
+                id="restaurantType1"
+                value="Hotel"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="restaurantType1"
+                ><span style="white-space: nowrap">Fast Food</span></label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfRestaurant"
+                id="restaurantType2"
+                value="Dormitory"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="restaurantType2"
+                ><span style="white-space: nowrap">Fine Dining</span></label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfRestaurant"
+                id="restaurantType3"
+                value="Home"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="restaurantType3">Home</label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="typeOfRestaurant"
+                id="restaurantType4"
+                value="Home"
+                autocomplete="off"
+              />
+              <label class="btn btn-light" for="restaurantType4">Pubs</label>
+            </div>
+
+            <!--  recCAPTCHA  -->
+
+            <div
+              class="g-recaptcha"
+              data-sitekey="6LfwQFgnAAAAADkDUUnq0SbiUDb44Mb0kwbRss4B"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+body {
+   background: #cdc4f9;
+}
+
+/* hidden */
+.brandlogo {
+   height: 6.1rem;
+}
+
+.logo {
+   height: 17rem;
+   /* align-self: center; */
+   margin: auto;
+   overflow: hidden;
+}
+
+.card-img-left {
+   width: 45%;
+   /* Link to your background image using in the property below! */
+   /* background: scroll center url('https://th.bing.com/th/id/R.9106ed603d363e9bddb03aac4b1c232c?rik=p1VHsOoRwLaQKQ&riu=http%3a%2f%2fhdwallpapers2013.com%2fwp-content%2fuploads%2f2012%2f09%2fpurple-background-wallpaper.jpg&ehk=jtX7B8tVonBboOfZoSwUc28Ltvmd3mBOKxg3YE%2fCeWQ%3d&risl=&pid=ImgRaw&r=0'); */
+   background: scroll center url('/images/backgroundImage.jpg');
+   background-size: cover;
+   justify-content: center;
+}
+
+.btn-login {
+   font-size: 0.9rem;
+   letter-spacing: 0.05rem;
+   padding: 0.75rem 1rem;
+   font-weight: 500;
+}
+
+.btn-google {
+   border-color: lightgray;
+   white-space: nowrap;
+   width: 100%;
+}
+
+.btn-facebook {
+   color: white !important;
+   background-color: #3b5998;
+}
+
+.btn-register {
+   --bs-btn-color: #f8f9fa;
+   --bs-btn-hover-color: #f8f9fa;
+   --bs-btn-active-color: #f8f9fa;
+   --bs-btn-active-bg: #6549ec;
+   --bs-btn-active-border-color: #6549ec;
+   --bs-btn-bg: #785fee;
+   --bs-btn-hover-bg: #6b50ed;
+}
+
+.or-container {
+   width: 100%;
+   height: 2rem;
+   margin-bottom: 2rem;
+   border-bottom: 1px solid lightgray;
+   text-align: center;
+   padding-top: 1.1rem;
+}
+
+.or-text {
+   font-size: 0.8rem;
+   background-color: white;
+   padding: 0 5px;
+   user-select: none;
+}
+
+.container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.row {
+   width: 75rem;
+}
+
+.card {
+   height: 35rem;
+}
